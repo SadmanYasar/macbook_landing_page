@@ -1,5 +1,5 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Gltf, ScrollControls, useScroll, Html, Scroll } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Gltf, ScrollControls, useScroll, Html, Scroll, Text } from "@react-three/drei";
 import { getProject, val } from "@theatre/core";
 import theatreState from "./macbook_flythrough.json";
 
@@ -7,11 +7,12 @@ import {
   SheetProvider,
   PerspectiveCamera,
   useCurrentSheet,
+
 } from "@theatre/r3f";
 import { useState, useEffect } from "react";
 import ToolTip from "./components/Tooltip";
-import { Macbook } from "./components/Macbook";
 import { MacBookGroup } from "./components/MacbookGroup";
+import { editable as e } from "@theatre/r3f"
 
 export default function App() {
   const sheet = getProject("Fly Through", { state: theatreState }).sheet(
@@ -19,17 +20,12 @@ export default function App() {
   );
 
   return (
-    <div className="container mx-auto h-screen bg-red-400 overflow-hidden p-0 m-0">
+    <div className="container mx-auto h-screen overflow-hidden p-0 m-0">
       <Canvas gl={{ preserveDrawingBuffer: true }}>
-        <ScrollControls pages={10}>
+        <ScrollControls pages={5}>
           <SheetProvider sheet={sheet}>
             <Scene />
           </SheetProvider>
-          <Scroll html>
-            <div className="text-white">
-              TEST
-            </div>
-          </Scroll>
         </ScrollControls>
       </Canvas>
     </div>
@@ -59,12 +55,21 @@ function Scene() {
 
   return (
     <>
-      <color attach="background" args={[bgColor]} />
+      {/* <color attach="background" args={[bgColor]} /> */}
       <fog attach="fog" color={bgColor} near={-4} far={40} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[-5, 5, -5]} intensity={1.5} />
-      {/* <Gltf src="/macbook.glb" castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]} /> */}
       <MacBookGroup />
+      <e.mesh theatreKey="text">
+        <Text
+          scale={[0.7, 1, 1]}
+          color="white" // default
+          anchorX="center" // default
+          anchorY="middle" // default
+        >
+          BOLD
+        </Text>
+      </e.mesh>
       <PerspectiveCamera
         theatreKey="Camera"
         makeDefault

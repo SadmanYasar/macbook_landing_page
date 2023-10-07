@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* set background to black */
+body {
+  background-color: black;
+}
+
+/* hide all scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}

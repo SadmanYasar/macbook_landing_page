@@ -5,8 +5,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-studio.extend(extension);
-studio.initialize();
+// Vite
+if (import.meta.env.DEV) {
+  studio.initialize()
+  studio.extend(extension)
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -12,65 +12,81 @@ import { editable as e } from "@theatre/r3f"
 import { useMediaQuery } from "@uidotdev/usehooks";
 
 export function MacBookGroup(props) {
+    const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
+    const isMobile = useMediaQuery("only screen and (min-width: 640px)");
+    const isTablet = useMediaQuery("only screen and (min-width: 768px)");
+    const isDesktopSmall = useMediaQuery("only screen and (min-width: 1024px)");
+    const isDesktopMedium = useMediaQuery("only screen and (min-width: 1280px)");
+    const isDesktopLarge = useMediaQuery("only screen and (min-width: 1536px)");
+
     const { nodes, materials } = useGLTF("/macbook_lowpoly_asset.glb");
     return (
         <group {...props} dispose={null}>
             <group rotation={[-Math.PI / 2, 0, 0]} scale={0.218}>
                 <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP13001_MBP13_0.geometry}
-                        material={materials.MBP13}
-                        position={[-15.843, 5.109, -26.358]}
-                        rotation={[0.639, 1.188, 2.539]}
-                        scale={35.221}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP13Screen001_MBP13_0.geometry}
-                        material={materials.MBP13}
-                        position={[-15.843, 5.109, -26.358]}
-                        rotation={[-0.869, 1.106, -2.328]}
-                        scale={35.221}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP14001_MBP14_0.geometry}
-                        material={materials.MBP14}
-                        position={[-5.052, 6.608, 55.276]}
-                        rotation={[2.917, 0, 0]}
-                        scale={35.558}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP14Screen001_MBP14_0.geometry}
-                        material={materials.MBP14}
-                        position={[-5.052, 6.541, 55.276]}
-                        rotation={[-2.793, 0, 0]}
-                        scale={35.558}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP16001_MBP16_0.geometry}
-                        material={materials.MBP16}
-                        position={[57.013, 6.888, 12.063]}
-                        rotation={[0.393, -0.951, -2.816]}
-                        scale={40.569}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.MBP16Screen001_MBP16_0.geometry}
-                        material={materials.MBP16}
-                        position={[57.013, 6.508, 12.063]}
-                        rotation={[-0.584, -0.902, 2.663]}
-                        scale={40.569}
-                    />
+                    <e.group theatreKey="lap1">
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP13001_MBP13_0.geometry}
+                            material={materials.MBP13}
+                            position={[-15.843, 5.109, -26.358]}
+                            rotation={[0.639, 1.188, 2.539]}
+                            scale={35.221}
+                        />
+                        <e.mesh
+                            theatreKey="screen1"
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP13Screen001_MBP13_0.geometry}
+                            material={materials.MBP13}
+                            position={[-15.843, 5.109, -26.358]}
+                            rotation={[-0.869, 1.106, -2.328]}
+                            scale={35.221}
+                        />
+                    </e.group>
+                    <e.group theatreKey="lap2">
+                        <e.mesh
+                            theatreKey="screen2"
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP14Screen001_MBP14_0.geometry}
+                            material={materials.MBP14}
+                            position={[-5.052, 6.541, 55.276]}
+                            rotation={[-2.793, 0, 0]}
+                            scale={35.558}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP14001_MBP14_0.geometry}
+                            material={materials.MBP14}
+                            position={[-5.052, 6.608, 55.276]}
+                            rotation={[2.917, 0, 0]}
+                            scale={35.558}
+                        />
+                    </e.group>
+                    <e.group theatreKey="lap3">
+                        <e.mesh
+                            theatreKey="screen3"
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP16Screen001_MBP16_0.geometry}
+                            material={materials.MBP16}
+                            position={[57.013, 6.508, 12.063]}
+                            rotation={[-0.584, -0.902, 2.663]}
+                            scale={40.569}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.MBP16001_MBP16_0.geometry}
+                            material={materials.MBP16}
+                            position={[57.013, 6.888, 12.063]}
+                            rotation={[0.393, -0.951, -2.816]}
+                            scale={40.569}
+                        />
+                    </e.group>
                 </group>
             </group>
         </group>
