@@ -1,5 +1,5 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Gltf, ScrollControls, useScroll, Html, Scroll, Text } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { ScrollControls, useScroll, Text } from "@react-three/drei";
 import { getProject, val } from "@theatre/core";
 import theatreState from "./macbook_flythrough.json";
 
@@ -10,7 +10,6 @@ import {
 
 } from "@theatre/r3f";
 import { useState, useEffect } from "react";
-import ToolTip from "./components/Tooltip";
 import { MacBookGroup } from "./components/MacbookGroup";
 import { editable as e } from "@theatre/r3f"
 
@@ -20,9 +19,9 @@ export default function App() {
   );
 
   return (
-    <div className="container mx-auto h-screen overflow-hidden p-0 m-0">
+    <div className="w-full mx-auto h-screen overflow-hidden p-0 m-0">
       <Canvas gl={{ preserveDrawingBuffer: true }}>
-        <ScrollControls pages={5}>
+        <ScrollControls pages={7}>
           <SheetProvider sheet={sheet}>
             <Scene />
           </SheetProvider>
@@ -62,12 +61,12 @@ function Scene() {
       <MacBookGroup />
       <e.mesh theatreKey="text">
         <Text
-          scale={[0.7, 1, 1]}
+          scale={[0.4, 0.4, 1]}
           color="white" // default
           anchorX="center" // default
           anchorY="middle" // default
         >
-          BOLD
+          Macbook
         </Text>
       </e.mesh>
       <PerspectiveCamera
